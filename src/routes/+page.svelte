@@ -17,8 +17,8 @@
 	<div class="project rot">
 		rightontrek
 	</div>
-	<div class="project educt">
-		educt
+	<div class="project educt"> 
+		educt ы
 	</div>
 	<div class="project rot">
 		rightontrek
