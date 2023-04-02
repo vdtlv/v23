@@ -20,7 +20,9 @@ body {
 	margin: 0;
 	background-attachment: fixed;
 	background-color: var(--color-bg-0);
-	background-size: 100vw 100vh;
+	background-image: url(src/lib/images/noise.svg);
+	background-size: 100%;
+	background-repeat: repeat;
 }
 
 h1,

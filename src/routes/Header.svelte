@@ -44,7 +44,6 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 2rem;
-		background-color: var(--color-bg-0);
 	}
 
 	.left-corner, .right-corner {
