@@ -22,6 +22,8 @@
 		<a href="#myprojects" on:click|preventDefault={scrollIntoView}>Projects</a>
 		<a href="/about">About</a>
 		<a href="/about">Contacts</a>
+		|
+		<a href="/about">Store ↗</a>
 	</nav>
 
 	<div class="right-corner">
