@@ -1,129 +1,84 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+
+	function scrollIntoView({ target }: {target:any}) {
+		const el = document.querySelector(target.getAttribute('href'));
+		if (!el) return;
+    el.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+	let y = 0;
 </script>
+<svelte:window bind:scrollY={y}/>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
+	<div class="left-corner">
+			<p><!--VDTLV--> {y} </p>
 	</div>
 
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
+		<a href="#myprojects" on:click|preventDefault={scrollIntoView}>Projects</a>
+		<a href="/about">About</a>
+		<a href="/about">Contacts</a>
 	</nav>
 
-	<div class="corner">
+	<div class="right-corner">
 		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
+			<!--<img src={github} alt="GitHub" />-->
+			EN
 		</a>
 	</div>
 </header>
 
 <style>
 	header {
+		z-index: 100;
+		position: fixed;
+		top: 0;
+  		right: 0;
+		height: 22px;
+		width: calc(100% - 4rem);
 		display: flex;
 		justify-content: space-between;
-	}
-
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
-
-	.corner a {
-		display: flex;
 		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
+		padding: 1rem 2rem;
+		background-color: var(--color-bg-0);
 	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
+	.left-corner, .right-corner {
+		width: 64px;
+		font-weight: 700;
+		font-size: 1rem;
+	}
+
+	.left-corner p {
+		margin: 0;
+	}
+
+	.right-corner {
+		text-align: right;
 	}
 
 	nav {
 		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
-
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li[aria-current='page']::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-theme-1);
-	}
-
-	nav a {
-		display: flex;
 		height: 100%;
 		align-items: center;
-		padding: 0 0.5rem;
-		color: var(--color-text);
+	}
+	a {
 		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
+		border-radius: 6px;
+		color: var(--color-text);
 		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--color-theme-1);
-	}
+		padding: 4px 8px;
+		transition: 0.2s;
+  	}
+ 	a:hover {
+		background-color: var(--hover);
+		cursor: pointer;
+  	}
+  	a:visited {
+    	text-decoration: none;
+  	}
 </style>
