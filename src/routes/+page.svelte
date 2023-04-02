@@ -55,25 +55,29 @@
 
 		width: calc(100%-2rem);
 		height: calc(100vh - 114px);
-		overflow-y: auto;
+		
+		overflow-y: scroll;
+		scroll-snap-type: y mandatory;	
+		-webkit-overflow-scrolling: touch;
 
 		position: sticky;
-		top: 54px
+		top: 54px;
 	}
-
-		.projects > *:not(:last-child) {
-    	margin-bottom: 2rem; 
-	} 
 
 	/* –––––– rot settings –––––– */
 	.project {
 		width: 100%;
-		height: 512px;
+		height: calc(100vh - 118px);
 		border-radius: 4rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		margin-bottom: 2rem;
+		
+		scroll-margin: 2rem;
+  		scroll-snap-align: start;
+  		
 	}
 
 	.rot {
