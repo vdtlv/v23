@@ -1,9 +1,20 @@
-<script>
+<script lang="ts">
+
 	import Header from './Header.svelte';
 	import Intro from './Intro.svelte';
-	let ovrflw = 'auto';
 
+	import { inview } from 'svelte-inview';
+
+	let isInView:Boolean;
+	let scrollDirection: ScrollDirection;
+	const options = {
+		rootMargin: '-50px',
+    	unobserveOnEnter: true,
+	};
+	let y = 0;
 </script>
+
+<svelte:window bind:scrollY={y}/>
 
 <svelte:head>
 	<title>vdtlv</title>
@@ -11,34 +22,60 @@
 </svelte:head>
 
 <Header />
-<Intro />
-<div style="height: 400vh;">
-<section class="projects" id="myprojects">
-	<div class="project rot">
-		rightontrek
-	</div>
-	<div class="project educt"> 
-		educt ы
-	</div>
-	<div class="project rot">
-		rightontrek
-	</div>
-	<div class="project educt">
-		educt
-	</div>
-</section>
+
+<div class="container" >
+	<section class="projects" id="myprojects">
+
+		<Intro  />
+		<div class="project rot">
+			rightontrek
+		</div>
+		<div class="pr educt" 
+		use:inview={options}
+		on:inview_change={(event) => {
+		  const { inView, entry, scrollDirection, observer, node} = event.detail;
+		  isInView = inView;
+		}}
+		on:inview_enter={(event) => {
+		  const { inView, entry, scrollDirection, observer, node} = event.detail;
+		  isInView = inView;
+		}}
+		on:inview_leave={(event) => {
+		  const { inView, entry, scrollDirection, observer, node} = event.detail;
+		  isInView = inView;
+		}}
+		on:inview_init={(event) => {
+		  const { observer, node } = event.detail;
+		}}>
+		{isInView ? 'Hey I am in the viewport' : 'Bye, Bye'} 
+			educt ы
+		</div>
+		<div class="project rot">
+			rightontrek
+		</div>
+		<div class="project educt">
+			educt
+		</div>
+	</section>
 </div>
 
+<section class="contacts" id="contacts" style="background-color: red; color: white; height 500px; width:500px"> heey</section>
 
 <style>
 
 	/* –––––– prjects settings –––––– */
+
+	.container {
+		height: 100vh;
+	}
 
 	section::-webkit-scrollbar{
     	display: none;
   	}
 
 	.projects {
+		position: sticky;
+		top: 54px;
 		/*display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -46,40 +83,45 @@
 
 		overflow-y: scroll;
 				
+		background-color: var(--color-bg-2);
 		*/
 
-		padding: 2rem;
+		
 
-		background-color: var(--color-bg-2);
-		border-radius: 6rem;
-
-		width: calc(100%-2rem);
-		height: calc(100vh - 114px);
+		height: calc(100vh - 54px);
 		
 		overflow-y: scroll;
 		scroll-snap-type: y mandatory;	
 		-webkit-overflow-scrolling: touch;
-
-		position: sticky;
-		top: 54px;
 	}
 
-	/* –––––– rot settings –––––– */
+	
 	.project {
-		width: 100%;
-		height: calc(100vh - 118px);
-		border-radius: 4rem;
+		height: calc(100vh - 54px);
+		text-align: center;
+		
+		scroll-snap-align: start;
+		scroll-snap-stop: always;
+
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: 2rem;
-		
-		scroll-margin: 2rem;
-  		scroll-snap-align: start;
-  		
 	}
 
+	.pr {
+		height: calc(200vh - 54px);
+		text-align: center;
+		
+		scroll-snap-align: start;
+		scroll-snap-stop: normal;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	/* –––––– rot settings –––––– */
 	.rot {
 		background-color: orange;
 	}

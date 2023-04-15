@@ -13,7 +13,7 @@
 </div>
 
 <style>
-	.app {
+	/*.app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
@@ -24,9 +24,8 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		max-width: 1200px;
 		margin: 0 auto;
-	}
+	}*/
 	
 	footer {
 		display: flex;

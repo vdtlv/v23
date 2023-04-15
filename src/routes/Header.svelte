@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
+	let current = 'intro';
+
 	function scrollIntoView({ target }: {target:any}) {
 		const el = document.querySelector(target.getAttribute('href'));
 		if (!el) return;
@@ -19,11 +21,18 @@
 	</div>
 
 	<nav>
-		<a href="#myprojects" on:click|preventDefault={scrollIntoView}>Projects</a>
-		<a href="/about">About</a>
-		<a href="/about">Contacts</a>
-		|
-		<a href="/about">Store ↗</a>
+		<a href="#myprojects" 
+		class:active="{current === 'myprojects'}"
+		on:click="{() => current = 'myprojects'}"
+		on:click|preventDefault={scrollIntoView}>Projects</a>
+		<a href="#about"
+		class:active="{current === 'about'}"
+		on:click="{() => current = 'about'}"
+		on:click|preventDefault={scrollIntoView}>About</a>
+		<a href="#contacts"
+		class:active="{current === 'contacts'}"
+		on:click="{() => current = 'contacts'}"
+		on:click|preventDefault={scrollIntoView}>Contacts</a>
 	</nav>
 
 	<div class="right-corner">
@@ -67,6 +76,10 @@
 		height: 100%;
 		align-items: center;
 	}
+
+	nav > a {
+		opacity: .6;
+	}
 	a {
 		font-weight: 700;
 		border-radius: 6px;
@@ -76,9 +89,14 @@
 		transition: 0.2s;
   	}
  	a:hover {
+
 		background-color: var(--hover);
 		cursor: pointer;
   	}
+
+	.active {
+		opacity: 1;
+	}
   	a:visited {
     	text-decoration: none;
   	}

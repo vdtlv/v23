@@ -1,15 +1,24 @@
 <script>
+	import { fade, scale } from 'svelte/transition';
+	import { onMount } from 'svelte';
+
+
 	import me from '$lib/images/vdtlvpic.webp';
 	import me_fallback from '$lib/images/vdtlvpic.png';
 	import fm from '$lib/images/fmlogo.webp';
 	import fm_fallback from '$lib/images/fmlogo.png';
+
+	let animate = false;
+	onMount(() => animate = true);
+
     let y = 0;
 </script>
 <svelte:window bind:scrollY={y}/>
 
-<section class="intro">
-<div style="scale: {1 - Math.min(y / 200)}; opacity: {1 - ( y / 200)};">
-	<h5>
+<section class="intro" >
+<!--<div style="scale: {1 - (y / 200)}; opacity: {1 - ( y / 200)};">-->
+	{#if animate && y<54}
+	<h5 in:scale="{{ duration: 500 }}">
 		Hi! I'm
 		<span class="me">
 			<picture>
@@ -25,7 +34,8 @@
 			</picture>
 		Fitmost. Also trying to develop pet-projects in my spare time.
 	</h5>
-</div>
+	{/if}
+<!--</div>-->
 </section>
 
 <style>
@@ -35,8 +45,10 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+	height: 374px;
 
-
+	scroll-snap-align: start;
+	scroll-snap-stop: always;	
 }
 
 /* –––––– intro settings –––––– */
