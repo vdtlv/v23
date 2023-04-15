@@ -25,7 +25,7 @@
 		class:active="{current === 'myprojects'}"
 		on:click="{() => current = 'myprojects'}"
 		on:click|preventDefault={scrollIntoView}>Projects</a>
-		<a href="/about"
+		<a href="/"
 		class:active="{current === 'about'}"
 		on:click="{() => current = 'about'}"
 		on:click|preventDefault={scrollIntoView}>About</a>
