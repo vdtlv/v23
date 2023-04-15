@@ -6,7 +6,7 @@
 	import { inview } from 'svelte-inview';
 
 	let isInView:Boolean;
-	let scrollDirection: ScrollDirection;
+	//let scrollDirection: ScrollDirection;
 	const options = {
 		rootMargin: '-50px',
     	unobserveOnEnter: true,
